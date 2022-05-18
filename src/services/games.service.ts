@@ -27,7 +27,7 @@ export class GamesService {
     return this.http.post<Game>(`${this.API}/games`, game);
   }
 
-  updateGame(id: string, gameUpdated: Game){
+  updateGame(id:string|number, gameUpdated: Game){
 
     return this.http.put(`${this.API}/games/${id}`, gameUpdated);
   }

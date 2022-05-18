@@ -12,7 +12,7 @@
                 <div class="form-group">
                     <input type="url" name="image" placeholder="Image" class="form-control"  [(ngModel)]="game.image">
                 </div>
-                <button mat-raised-button color="primary" class="btn btn-block btnc" (click)="saveGame()">Save</button>
+                <button mat-raised-button color="primary" class="btn btn-block btnc" (click)="validation == true ? updateGame() : saveGame()">Save</button>
             </form>
         </div>
     </div>

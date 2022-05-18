@@ -10,6 +10,7 @@ import { GamesService } from 'src/services/games.service';
 })
 export class FormGamesComponent implements OnInit {
   @HostBinding('class') classes = 'row';
+
   game: Game = {
     id: 0,
     title: '',
@@ -18,27 +19,46 @@ export class FormGamesComponent implements OnInit {
     created_at: new Date(),
   };
 
-  constructor(private gameService: GamesService, private route: Router, private activeR: ActivatedRoute) {}
+  id:number = 0;
+  
+  validation: boolean = false;
+
+  gameList: any = [];
+
+  constructor(
+    private gameService: GamesService,
+    private route: Router,
+    private activeR: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     const param = this.activeR.snapshot.params;
-    
-    if(param){
-      this.gameService.getGameId(param['id'])
-      .subscribe(data => {
-        console.log(data);
-      })
+    this.id = param['id'];
+
+    if (param['id']) {
+      this.gameService.getGameId(param['id']).subscribe((data) => {
+        console.log('Paso por aquí');
+        this.gameList = data;
+        for (let i = 0; i < this.gameList.length; i++) {
+          this.game = this.gameList[i];
+        }
+        if (this.gameList[0].id > 0) {
+          this.validation = true;
+        }
+      });
     }
   }
 
-
-  saveGame(){
+  saveGame(): void {
     delete this.game.created_at;
     delete this.game.id;
-    this.gameService.saveGame(this.game)
-    .subscribe(data => {
+    this.gameService.saveGame(this.game).subscribe((data) => {
       console.log(data);
       this.route.navigate(['/']);
     });
+  }
+  updateGame(): void {
+    this.gameService.updateGame(this.id, this.game);
+    this.route.navigate(['/games']);
   }
 }

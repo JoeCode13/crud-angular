@@ -1,0 +1,14 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  .cbtn{
+
+    margin-right: 10px;
+    background-color: blueviolet;
+
+  }
+
+  mat-toolbar{
+    background-color: #2D4263;
+    color: white;
+  }

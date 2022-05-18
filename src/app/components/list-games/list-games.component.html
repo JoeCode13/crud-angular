@@ -1,0 +1,30 @@
+<div class="col-md-4" *ngFor="let game of games">
+
+    <div class="card text-center">
+        <div class="card-header d-flex justify-content-between align-items-center bg-dark text-white">
+            {{game.title}}
+            
+            <button class="btn btn-danger" (click)="deleteGame(game.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+        <img [src]="game.image" class="card-img-top">
+        <div class="card-body">
+            <p>
+                {{game.description}}
+            </p>
+            <a class="btn btn-info btn-block" [routerLink]="['/games/edit', game.id]">Edit Game</a>
+        </div>
+    </div>
+    
+</div>
+
+
+
+<!-- <button mat-raised-button
+matTooltip="Delete the current game"
+matTooltipClass="example-tooltip-red"
+aria-label="Button that shows a red tooltip"
+class="example-button">
+<mat-icon>delete</mat-icon>
+</button> -->

@@ -4,13 +4,13 @@
         <div class="card-body">
             <form>
                 <div class="form-group">
-                    <input type="text" name="title" placeholder="Title" class="form-control" autofocus [(ngModel)]="game.title">
+                    <input type="text" name="title" placeholder="Title" class="form-control" [(ngModel)]="game.title" autofocus>
                 </div>
                 <div class="form-group">
                     <textarea name="description" placeholder="Description" rows="2" class="form-control"  [(ngModel)]="game.description"></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="url" name="image" placeholder="Image" class="form-control"  [(ngModel)]="game.image">
+                    <input type="url" name="image" placeholder="URL image" class="form-control"  [(ngModel)]="game.image">
                 </div>
                 <button mat-raised-button color="primary" class="btn btn-block btnc" (click)="validation == true ? updateGame() : saveGame()">Save</button>
             </form>
@@ -21,7 +21,7 @@
     <h3>Preview</h3>
     <div class="card card-body text-center">
         <img [src]="game.image == '' ? '/assets/notimg.png': game.image " class="card-img-top">
-        <h3>{{game.id}} - {{game.title == '' ? 'Game Title': game.title}}</h3>
+        <h3>{{game.title == '' ? 'Game Title': game.title}}</h3>
 
         <p>{{game.description == '' ? 'Type some Description' : game.description}}</p>
         <p>{{game.created_at | date: 'dd-MM-yyyy'}}</p>
